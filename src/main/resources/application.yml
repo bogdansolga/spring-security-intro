@@ -1,0 +1,20 @@
+# reference - http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+server:
+    port: 8080
+
+spring:
+    application:
+        name: Spring Security intro app
+    config:
+        name: Spring Security intro app
+
+    jpa:
+        show-sql: false
+        hibernate:
+            ddl-auto: update
+
+    security:
+        auth:
+            usersByUsernameQuery: SELECT userName, password, isActive FROM User user WHERE user.userName = ?
+            authoritiesByUsernameQuery: SELECT user.userName, role.authority FROM User user LEFT JOIN Role role ON user.id = role.userId WHERE user.userName = ?
