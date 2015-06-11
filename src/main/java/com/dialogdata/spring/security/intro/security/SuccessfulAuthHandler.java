@@ -41,7 +41,8 @@ public class SuccessfulAuthHandler implements AuthenticationSuccessHandler {
             final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) authentication;
             final Collection<GrantedAuthority> authorities = usernamePasswordAuthenticationToken.getAuthorities();
 
-            final AccountDetails accountDetails = new AccountDetails(authorities.iterator().next().getAuthority(), user.get().getFirstName());
+            final String role = authorities.iterator().next().getAuthority().replace("ROLE_", "").toLowerCase();
+            final AccountDetails accountDetails = new AccountDetails(role, user.get().getFirstName());
             final ObjectMapper mapper = new ObjectMapper();
             out.write(mapper.writeValueAsString(accountDetails));
 

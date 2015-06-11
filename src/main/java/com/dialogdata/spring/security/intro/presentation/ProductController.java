@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping
-    @PreAuthorize("authenticated AND hasRole('ROLE_MANAGER')")
+    @PreAuthorize("authenticated AND hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public Collection<ProductTO> getAll() {
         return productService.getAll();
     }

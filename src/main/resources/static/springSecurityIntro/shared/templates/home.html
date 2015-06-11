@@ -1,4 +1,12 @@
-<div class="container">
-    <h2>Welcome to the Spring Security intro</h2>
-    <p>Please use the menu to access the features</p>
+<div class="ng-cloak" data-ng-hide="authenticated" data-ng-cloak>
+    <div class="container">
+        <h2>Welcome to the Spring Security intro</h2>
+        <p>Please use the menu to access the features</p>
+    </div>
+</div>
+
+<div class="ng-cloak" data-ng-show="authenticated" data-ng-cloak>
+    <h4>Hello, {{name}}!</h4>
+
+    <p>Welcome to the Spring Security intro</p>
 </div>

@@ -8,15 +8,10 @@ angular.module('springSecurityIntro')
             var role = $cookies['role'];
             if (angular.isDefined(role)) {
                 $scope.role = role;
-
-                if (role == 'ROLE_ADMIN') {
-                    $location.path('/user');
-                } else {
-                    $location.path('/product');
-                }
             }
 
             $scope.name = $cookies['name'];
+            $location.path('/');
         });
 
         $scope.$on('logout', function() {

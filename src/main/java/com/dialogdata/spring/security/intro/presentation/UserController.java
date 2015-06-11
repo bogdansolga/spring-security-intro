@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping
-    @PreAuthorize("authenticated AND hasRole('ROLE_ADMIN')")
+    @PreAuthorize("authenticated AND hasRole('ROLE_MANAGER')")
     public Collection<UserTO> getAll() {
         return userService.getAll();
     }
