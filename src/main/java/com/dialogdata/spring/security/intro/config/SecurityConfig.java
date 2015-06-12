@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -72,8 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Envi
             .sessionAuthenticationErrorUrl("/#")
             .invalidSessionUrl("/#");
 
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/*/user/**").access("authenticated AND hasRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/*/product/**").access("authenticated AND hasRole('ROLE_MANAGER')");
+        final ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry authorizeRequests = http.authorizeRequests();
+        authorizeRequests.antMatchers(HttpMethod.GET, "/*/user/**").access("authenticated AND hasRole('ROLE_MANAGER')");
+        authorizeRequests.antMatchers(HttpMethod.GET, "/*/product/**").access("authenticated AND hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')");
 
         http.logout()
             .logoutUrl("/logout")
