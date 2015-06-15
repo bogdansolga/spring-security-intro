@@ -51,6 +51,8 @@
         <!-- Logging -->
         <slf4j.version>1.7.12</slf4j.version>
 
+        <start-class>com.dialogdata.spring.security.intro.SpringSecurityIntroApp</start-class>
+
         <!-- Maven plugins versions -->
         <maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
         <maven.jetty.plugin.version>6.1.10</maven.jetty.plugin.version>
